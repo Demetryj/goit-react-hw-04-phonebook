@@ -11,7 +11,7 @@ export const ListContacts = ({ allContacts, onClickDelete }) => {
           name={name}
           number={number}
           id={id}
-          onClickDelete={onClickDelete}
+          onClickDelete={() => onClickDelete(id)}
         />
       ))}
     </List>
