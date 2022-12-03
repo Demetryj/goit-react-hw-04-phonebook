@@ -66,7 +66,7 @@ export const App = () => {
   return (
     <Box p={[4]}>
       <Title>Phonebook</Title>
-      <Forma onSubmit={addContacts} />
+      <Forma onSubmit={addContacts} contacts={contacts} />
 
       <TitleContacts>Contacts</TitleContacts>
       <Filter onChangeFilter={changeFilter} value={filter} />
