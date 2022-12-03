@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import { Form, Label, Input, Button } from './FormaStyled';
 
-export const Forma = ({ onSubmit }) => {
+export const Forma = ({ onSubmit, contacts }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -23,8 +24,13 @@ export const Forma = ({ onSubmit }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-
     onSubmit({ name, number });
+
+    if (contacts.some(contact => contact.name === name)) {
+      return;
+      /* Перевірка при сабміті: якщо таке ім'я контакта вже є, то не
+        очищувати форму після алерта. */
+    }
 
     setName('');
     setNumber('');
@@ -65,4 +71,9 @@ export const Forma = ({ onSubmit }) => {
       <Button type="submit">Add contact</Button>
     </Form>
   );
+};
+
+Forma.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  contacts: PropTypes.array.isRequired,
 };
